@@ -1,41 +1,47 @@
 package com.tdd.StringCalculator;
 
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StringCalculator 
 {
 	
 	int Add(String numbers) {
 		
-		String delimiter = "[,|\n]+";
-		if(Pattern.compile("^//").matcher(numbers).find()){
-			delimiter = Character.toString(numbers.charAt(2));
-			numbers = numbers.substring(4);
-			}
-		String[] num = numbers.split(delimiter);
-		int sum = 0;
-		for(int i=0;i<num.length;i++){
-			if(isNumber(num[i])){
-				sum += Integer.parseInt(num[i]);
-			}
-		}
-		return sum;
-		
+	    String delimiter = ",|\n";
+	    String delimeterRemovedNumbers = numbers;
+	    if (numbers.startsWith("//")) {
+	        int delimiterIndex = numbers.indexOf("//") + 2;
+	        delimiter = numbers.substring(delimiterIndex, delimiterIndex + 1);
+	        delimeterRemovedNumbers = numbers.substring(numbers.indexOf("n") + 1);
+	    }
+	    return Add(delimeterRemovedNumbers, delimiter);
+	    
 	}
-	
-	boolean isNumber(String num){
-		try{
-			int n = Integer.parseInt(num);
-			}
-		catch(NumberFormatException err){
-			return false;
-			}
-		return true;
+	 
+	int Add(String numbers, String delimiter) {
+		
+		int value = 0;
+	    String[] arrayOfNumbers = numbers.split(delimiter);
+	    List negativeValues = new ArrayList();
+	    for (String number : arrayOfNumbers) {
+	        if (!number.trim().isEmpty()) {
+	            int integerNumber = Integer.parseInt(number.trim());
+	            if (integerNumber < 0) {
+	                negativeValues.add(integerNumber);
+	            }
+	            value += integerNumber;
+	        }
+	    }
+	    if (negativeValues.size() > 0) {
+	        throw new RuntimeException("Negative numbers are not allowed: " + negativeValues.toString());
+	    }
+	    return value; 
 	}
 	
     public static void main( String[] args )
     {
     	StringCalculator stringCalculator = new StringCalculator();
-    	System.out.println(stringCalculator.Add("//;\n5;3"));
+    	System.out.println(stringCalculator.Add("5,-3,14,-12,37,21"));
     }
 }

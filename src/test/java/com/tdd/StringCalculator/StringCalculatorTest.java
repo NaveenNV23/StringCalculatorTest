@@ -40,7 +40,20 @@ public class StringCalculatorTest
     public void supportingDifferentDelimeters()
     {
     	StringCalculator stringCalculator = new StringCalculator();
-        Assert.assertEquals(3,stringCalculator.Add("//;\n1;2"));
+        Assert.assertEquals(3,stringCalculator.Add("//;\\n1;2"));
     }
+	
+	@Test
+	public void runtimeExceptionIsThrownWhenNegativeNumbersAreUsed() {
+	    RuntimeException exception = null;
+	    try {
+	    	StringCalculator stringCalculator = new StringCalculator();
+	        stringCalculator.Add("5,-3,14,-12,37,21");
+	    } catch (RuntimeException e) {
+	        exception = e;
+	    }
+	    Assert.assertNotNull(exception);
+	    Assert.assertEquals("Negative numbers are not allowed: [-3, -12]", exception.getMessage());
+	}
 
 }
