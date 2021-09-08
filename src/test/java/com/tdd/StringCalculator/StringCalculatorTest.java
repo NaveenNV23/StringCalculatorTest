@@ -4,6 +4,7 @@ package com.tdd.StringCalculator;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 public class StringCalculatorTest 
 {
 
@@ -20,4 +21,12 @@ public class StringCalculatorTest
     	StringCalculator stringCalculator = new StringCalculator();
         Assert.assertEquals(3,stringCalculator.Add("1,2"));
     }
+	
+	@Test
+    public void addMultipleNumbers()
+    {
+    	StringCalculator stringCalculator = new StringCalculator();
+        Assert.assertEquals(10,stringCalculator.Add("1,2,3,4"));
+    }
+
 }
