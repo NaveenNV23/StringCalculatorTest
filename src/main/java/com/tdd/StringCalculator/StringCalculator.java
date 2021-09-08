@@ -30,7 +30,9 @@ public class StringCalculator
 	            if (integerNumber < 0) {
 	                negativeValues.add(integerNumber);
 	            }
-	            value += integerNumber;
+	            else if (integerNumber <= 1000) {
+                    value += integerNumber;
+	            }
 	        }
 	    }
 	    if (negativeValues.size() > 0) {
@@ -42,6 +44,6 @@ public class StringCalculator
     public static void main( String[] args )
     {
     	StringCalculator stringCalculator = new StringCalculator();
-    	System.out.println(stringCalculator.Add("5,-3,14,-12,37,21"));
+    	System.out.println(stringCalculator.Add("18,2008,1000,22,1545"));
     }
 }

@@ -55,5 +55,11 @@ public class StringCalculatorTest
 	    Assert.assertNotNull(exception);
 	    Assert.assertEquals("Negative numbers are not allowed: [-3, -12]", exception.getMessage());
 	}
+	
+	@Test
+	public void numbersBiggerThanThousandShouldBeIgnored() {
+    	StringCalculator stringCalculator = new StringCalculator();
+	    Assert.assertEquals(1040, stringCalculator.Add("18,2008,1000,22,1545"));
+	}
 
 }
