@@ -28,5 +28,12 @@ public class StringCalculatorTest
     	StringCalculator stringCalculator = new StringCalculator();
         Assert.assertEquals(10,stringCalculator.Add("1,2,3,4"));
     }
+	
+	@Test
+    public void handleNewLinesBetweenNumbers()
+    {
+    	StringCalculator stringCalculator = new StringCalculator();
+        Assert.assertEquals(6,stringCalculator.Add("1\n2,3"));
+    }
 
 }

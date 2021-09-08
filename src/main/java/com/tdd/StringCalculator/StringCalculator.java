@@ -10,7 +10,7 @@ public class StringCalculator
 		}else{
 			
 			int total = 0;
-			String[] num = numbers.split(",");
+			String[] num = numbers.split(",|\n");
 	        for(String str: num){
 	            total+= Integer.parseInt(str);
 	        }
@@ -22,6 +22,6 @@ public class StringCalculator
     public static void main( String[] args )
     {
     	StringCalculator stringCalculator = new StringCalculator();
-    	System.out.println(stringCalculator.Add("1,2,3,4"));
+    	System.out.println(stringCalculator.Add("1\n2,3"));
     }
 }
